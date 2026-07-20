@@ -1,0 +1,332 @@
+<mxGraphModel>
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+    <!-- 标题 -->
+    <mxCell id="2" value="Learn Claude Code Java - 学习流程图" style="text;html=1;fontSize=22;fontStyle=1;align=center;verticalAlign=middle;fillColor=none;strokeColor=none;fontColor=#1a1a2e;" vertex="1" parent="1">
+      <mxGeometry x="80" y="10" width="740" height="40" as="geometry"/>
+    </mxCell>
+    <mxCell id="3" value="核心公式：大模型负责决策 + 本地运行时负责执行工具 + 循环直到任务完成" style="text;html=1;fontSize=11;fontStyle=2;align=center;verticalAlign=middle;fillColor=none;strokeColor=none;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="80" y="45" width="740" height="25" as="geometry"/>
+    </mxCell>
+
+    <!-- ========== 阶段一：理解最小闭环 ========== -->
+    <mxCell id="10" value="阶段一：理解最小闭环（1-2h）" style="swimlane;startSize=28;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=13;rounded=1;arcSize=10;swimlaneLine=0;" vertex="1" parent="1">
+      <mxGeometry x="20" y="80" width="860" height="130" as="geometry"/>
+    </mxCell>
+    <mxCell id="11" value="S01AgentLoop
+入口" style="rounded=1;fillColor=#e1f5fe;strokeColor=#0288d1;fontStyle=1;fontSize=11;" vertex="1" parent="10">
+      <mxGeometry x="20" y="40" width="100" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="12" value="Launcher
+统一启动器" style="rounded=1;fillColor=#e1f5fe;strokeColor=#0288d1;fontStyle=1;fontSize=11;" vertex="1" parent="10">
+      <mxGeometry x="160" y="40" width="100" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="13" value="AppContext
+总装车间" style="rounded=1;fillColor=#e1f5fe;strokeColor=#0288d1;fontStyle=1;fontSize=11;" vertex="1" parent="10">
+      <mxGeometry x="300" y="40" width="100" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="14" value="AgentRuntime
+⚡核心主循环" style="rounded=1;fillColor=#fff3e0;strokeColor=#ef6c00;fontStyle=1;fontSize=12;" vertex="1" parent="10">
+      <mxGeometry x="440" y="35" width="130" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="15" value="AnthropicClient
+模型网关" style="rounded=1;fillColor=#e1f5fe;strokeColor=#0288d1;fontStyle=1;fontSize=11;" vertex="1" parent="10">
+      <mxGeometry x="610" y="40" width="110" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="16" value="用户输入" style="rounded=1;fillColor=#f3e5f5;strokeColor=#7b1fa2;fontSize=10;" vertex="1" parent="10">
+      <mxGeometry x="750" y="45" width="80" height="35" as="geometry"/>
+    </mxCell>
+    <mxCell id="e11" style="endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="10" source="11" target="12">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e12" style="endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="10" source="12" target="13">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e13" style="endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="10" source="13" target="14">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e14" style="endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="10" source="14" target="15">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e15" style="endArrow=classic;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" edge="1" parent="10" source="15" target="16">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <!-- ========== 阶段二：工具体系与配置分离 ========== -->
+    <mxCell id="20" value="阶段二：工具体系与配置分离（1-2h）" style="swimlane;startSize=28;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=13;rounded=1;arcSize=10;swimlaneLine=0;" vertex="1" parent="1">
+      <mxGeometry x="20" y="225" width="860" height="130" as="geometry"/>
+    </mxCell>
+    <mxCell id="21" value="StageConfig
+阶段配置中心" style="rounded=1;fillColor=#e8f5e9;strokeColor=#2e7d32;fontStyle=1;fontSize=11;" vertex="1" parent="20">
+      <mxGeometry x="20" y="40" width="120" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="22" value="S02ToolUse
+文件工具" style="rounded=1;fillColor=#e8f5e9;strokeColor=#2e7d32;fontStyle=1;fontSize=11;" vertex="1" parent="20">
+      <mxGeometry x="180" y="40" width="100" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="23" value="CommandTools
+Agent的手脚" style="rounded=1;fillColor=#fff3e0;strokeColor=#ef6c00;fontStyle=1;fontSize=11;" vertex="1" parent="20">
+      <mxGeometry x="320" y="40" width="120" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="24" value="bash" style="rounded=1;fillColor=#f1f8e9;strokeColor=#558b2f;fontSize=10;" vertex="1" parent="20">
+      <mxGeometry x="480" y="38" width="70" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="25" value="read_file" style="rounded=1;fillColor=#f1f8e9;strokeColor=#558b2f;fontSize=10;" vertex="1" parent="20">
+      <mxGeometry x="560" y="38" width="70" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="26" value="write_file" style="rounded=1;fillColor=#f1f8e9;strokeColor=#558b2f;fontSize=10;" vertex="1" parent="20">
+      <mxGeometry x="480" y="78" width="70" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="27" value="edit_file" style="rounded=1;fillColor=#f1f8e9;strokeColor=#558b2f;fontSize=10;" vertex="1" parent="20">
+      <mxGeometry x="560" y="78" width="70" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="28" value="baseTools()
+最小工具集" style="text;html=1;fontSize=10;fontStyle=2;align=center;fillColor=none;strokeColor=none;fontColor=#555;" vertex="1" parent="20">
+      <mxGeometry x="470" y="108" width="170" height="25" as="geometry"/>
+    </mxCell>
+    <mxCell id="29" value="关键理解：
+运行时(AgentRuntime)稳定不变
+能力(StageConfig)控制开放哪些工具" style="text;html=1;fontSize=10;fontStyle=0;align=left;fillColor=#fffde7;strokeColor=#f9a825;rounded=1;spacingLeft=5;" vertex="1" parent="20">
+      <mxGeometry x="660" y="35" width="180" height="75" as="geometry"/>
+    </mxCell>
+    <mxCell id="e21" style="endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="20" source="21" target="22">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e22" style="endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="20" source="22" target="23">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e23" style="endArrow=classic;exitX=1;exitY=0.3;entryX=0;entryY=0.5;dashed=1;" edge="1" parent="20" source="23" target="24">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <!-- ========== 阶段三：高级机制 S03-S08 ========== -->
+    <mxCell id="30" value="阶段三：高级机制 S03-S08（2-3h）" style="swimlane;startSize=28;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=13;rounded=1;arcSize=10;swimlaneLine=0;" vertex="1" parent="1">
+      <mxGeometry x="20" y="370" width="860" height="150" as="geometry"/>
+    </mxCell>
+    <mxCell id="31" value="S03
+TodoWrite
+📋 任务规划" style="rounded=1;fillColor=#fffde7;strokeColor=#f9a825;fontStyle=1;fontSize=10;" vertex="1" parent="30">
+      <mxGeometry x="15" y="38" width="100" height="90" as="geometry"/>
+    </mxCell>
+    <mxCell id="32" value="S04
+Subagent
+🔀 分治探索" style="rounded=1;fillColor=#fffde7;strokeColor=#f9a825;fontStyle=1;fontSize=10;" vertex="1" parent="30">
+      <mxGeometry x="135" y="38" width="100" height="90" as="geometry"/>
+    </mxCell>
+    <mxCell id="33" value="S05
+SkillLoading
+📖 外挂知识" style="rounded=1;fillColor=#fffde7;strokeColor=#f9a825;fontStyle=1;fontSize=10;" vertex="1" parent="30">
+      <mxGeometry x="255" y="38" width="100" height="90" as="geometry"/>
+    </mxCell>
+    <mxCell id="34" value="S06
+ContextCompact
+📦 上下文压缩" style="rounded=1;fillColor=#fffde7;strokeColor=#f9a825;fontStyle=1;fontSize=10;" vertex="1" parent="30">
+      <mxGeometry x="375" y="38" width="110" height="90" as="geometry"/>
+    </mxCell>
+    <mxCell id="35" value="S07
+TaskSystem
+📋 持久任务板" style="rounded=1;fillColor=#fffde7;strokeColor=#f9a825;fontStyle=1;fontSize=10;" vertex="1" parent="30">
+      <mxGeometry x="505" y="38" width="110" height="90" as="geometry"/>
+    </mxCell>
+    <mxCell id="36" value="S08
+Background
+⏱️ 异步执行" style="rounded=1;fillColor=#fffde7;strokeColor=#f9a825;fontStyle=1;fontSize=10;" vertex="1" parent="30">
+      <mxGeometry x="635" y="38" width="100" height="90" as="geometry"/>
+    </mxCell>
+    <mxCell id="37" value="TodoManager" style="text;html=1;fontSize=9;fontStyle=2;align=center;fillColor=none;strokeColor=none;fontColor=#888;" vertex="1" parent="30">
+      <mxGeometry x="15" y="130" width="100" height="15" as="geometry"/>
+    </mxCell>
+    <mxCell id="38" value="runSubagent()" style="text;html=1;fontSize=9;fontStyle=2;align=center;fillColor=none;strokeColor=none;fontColor=#888;" vertex="1" parent="30">
+      <mxGeometry x="135" y="130" width="100" height="15" as="geometry"/>
+    </mxCell>
+    <mxCell id="39" value="SkillLoader" style="text;html=1;fontSize=9;fontStyle=2;align=center;fillColor=none;strokeColor=none;fontColor=#888;" vertex="1" parent="30">
+      <mxGeometry x="255" y="130" width="100" height="15" as="geometry"/>
+    </mxCell>
+    <mxCell id="40" value="CompressionService" style="text;html=1;fontSize=9;fontStyle=2;align=center;fillColor=none;strokeColor=none;fontColor=#888;" vertex="1" parent="30">
+      <mxGeometry x="375" y="130" width="110" height="15" as="geometry"/>
+    </mxCell>
+    <mxCell id="41" value="TaskManager" style="text;html=1;fontSize=9;fontStyle=2;align=center;fillColor=none;strokeColor=none;fontColor=#888;" vertex="1" parent="30">
+      <mxGeometry x="505" y="130" width="110" height="15" as="geometry"/>
+    </mxCell>
+    <mxCell id="42" value="BackgroundManager" style="text;html=1;fontSize=9;fontStyle=2;align=center;fillColor=none;strokeColor=none;fontColor=#888;" vertex="1" parent="30">
+      <mxGeometry x="635" y="130" width="100" height="15" as="geometry"/>
+    </mxCell>
+    <mxCell id="e31" style="endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="30" source="31" target="32">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e32" style="endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="30" source="32" target="33">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e33" style="endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="30" source="33" target="34">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e34" style="endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="30" source="34" target="35">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e35" style="endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="30" source="35" target="36">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <!-- S06 三层压缩说明 -->
+    <mxCell id="43" value="三层压缩:
+micro→auto→transcript" style="text;html=1;fontSize=9;fontStyle=2;align=center;fillColor=#fce4ec;strokeColor=#c62828;rounded=1;fontColor=#c62828;" vertex="1" parent="30">
+      <mxGeometry x="755" y="55" width="90" height="50" as="geometry"/>
+    </mxCell>
+
+    <!-- ========== 阶段四：多Agent协作 S09-S12 ========== -->
+    <mxCell id="50" value="阶段四：多Agent协作 S09-S12（2-3h）" style="swimlane;startSize=28;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=13;rounded=1;arcSize=10;swimlaneLine=0;" vertex="1" parent="1">
+      <mxGeometry x="20" y="535" width="860" height="160" as="geometry"/>
+    </mxCell>
+    <mxCell id="51" value="S09
+AgentTeams
+👥 Lead+Teammate" style="rounded=1;fillColor=#fce4ec;strokeColor=#c62828;fontStyle=1;fontSize=10;" vertex="1" parent="50">
+      <mxGeometry x="15" y="38" width="130" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="52" value="S10
+TeamProtocols
+📜 Shutdown/Approval" style="rounded=1;fillColor=#fce4ec;strokeColor=#c62828;fontStyle=1;fontSize=10;" vertex="1" parent="50">
+      <mxGeometry x="175" y="38" width="130" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="53" value="S11
+Autonomous
+🤖 自治队友认领" style="rounded=1;fillColor=#fce4ec;strokeColor=#c62828;fontStyle=1;fontSize=10;" vertex="1" parent="50">
+      <mxGeometry x="335" y="38" width="130" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="54" value="S12
+Worktree
+🌳 目录级隔离" style="rounded=1;fillColor=#fce4ec;strokeColor=#c62828;fontStyle=1;fontSize=10;" vertex="1" parent="50">
+      <mxGeometry x="495" y="38" width="130" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="55" value="SFull
+🚀 完整能力版" style="rounded=1;fillColor=#e1bee7;strokeColor=#6a1b9a;fontStyle=1;fontSize=12;" vertex="1" parent="50">
+      <mxGeometry x="670" y="43" width="130" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="56" value="MessageBus" style="text;html=1;fontSize=9;fontStyle=2;align=center;fillColor=none;strokeColor=none;fontColor=#888;" vertex="1" parent="50">
+      <mxGeometry x="15" y="135" width="130" height="15" as="geometry"/>
+    </mxCell>
+    <mxCell id="57" value="TeammateManager" style="text;html=1;fontSize=9;fontStyle=2;align=center;fillColor=none;strokeColor=none;fontColor=#888;" vertex="1" parent="50">
+      <mxGeometry x="175" y="135" width="130" height="15" as="geometry"/>
+    </mxCell>
+    <mxCell id="58" value="resumeAutonomous()" style="text;html=1;fontSize=9;fontStyle=2;align=center;fillColor=none;strokeColor=none;fontColor=#888;" vertex="1" parent="50">
+      <mxGeometry x="335" y="135" width="130" height="15" as="geometry"/>
+    </mxCell>
+    <mxCell id="59" value="WorktreeManager" style="text;html=1;fontSize=9;fontStyle=2;align=center;fillColor=none;strokeColor=none;fontColor=#888;" vertex="1" parent="50">
+      <mxGeometry x="495" y="135" width="130" height="15" as="geometry"/>
+    </mxCell>
+    <mxCell id="60" value="全部能力合并" style="text;html=1;fontSize=9;fontStyle=2;align=center;fillColor=none;strokeColor=none;fontColor=#888;" vertex="1" parent="50">
+      <mxGeometry x="670" y="135" width="130" height="15" as="geometry"/>
+    </mxCell>
+    <mxCell id="e51" style="endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="50" source="51" target="52">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e52" style="endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="50" source="52" target="53">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e53" style="endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="50" source="53" target="54">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e54" style="endArrow=classic;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeWidth=2;strokeColor=#6a1b9a;" edge="1" parent="50" source="54" target="55">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <!-- ========== 阶段间连接箭头 ========== -->
+    <mxCell id="e100" style="endArrow=classic;strokeWidth=2;strokeColor=#0288d1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="450" y="210" as="sourcePoint"/>
+        <mxPoint x="450" y="225" as="targetPoint"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="e200" style="endArrow=classic;strokeWidth=2;strokeColor=#2e7d32;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="450" y="355" as="sourcePoint"/>
+        <mxPoint x="450" y="370" as="targetPoint"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="e300" style="endArrow=classic;strokeWidth=2;strokeColor=#c62828;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="450" y="520" as="sourcePoint"/>
+        <mxPoint x="450" y="535" as="targetPoint"/>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- ========== 右侧：Agent 主循环图 ========== -->
+    <mxCell id="70" value="Agent 主循环（AgentRuntime.agentLoop）" style="swimlane;startSize=24;fillColor=#f3e5f5;strokeColor=#7b1fa2;fontStyle=1;fontSize=12;rounded=1;arcSize=10;swimlaneLine=0;" vertex="1" parent="1">
+      <mxGeometry x="900" y="80" width="280" height="340" as="geometry"/>
+    </mxCell>
+    <mxCell id="71" value="用户输入 → messages" style="rounded=1;fillColor=#e1bee7;strokeColor=#7b1fa2;fontSize=10;" vertex="1" parent="70">
+      <mxGeometry x="20" y="35" width="240" height="35" as="geometry"/>
+    </mxCell>
+    <mxCell id="72" value="上下文压缩检查
+(micro + auto compact)" style="rounded=1;fillColor=#e1bee7;strokeColor=#7b1fa2;fontSize=10;" vertex="1" parent="70">
+      <mxGeometry x="20" y="85" width="240" height="40" as="geometry"/>
+    </mxCell>
+    <mxCell id="73" value="后台结果 + Inbox 轮询回注" style="rounded=1;fillColor=#e1bee7;strokeColor=#7b1fa2;fontSize=10;" vertex="1" parent="70">
+      <mxGeometry x="20" y="140" width="240" height="35" as="geometry"/>
+    </mxCell>
+    <mxCell id="74" value="AnthropicClient.createMessage()
+system + messages + tools → 模型" style="rounded=1;fillColor=#fff3e0;strokeColor=#ef6c00;fontStyle=1;fontSize=10;" vertex="1" parent="70">
+      <mxGeometry x="20" y="190" width="240" height="45" as="geometry"/>
+    </mxCell>
+    <mxCell id="75" value="模型返回 text？
+→ 展示给用户，循环结束" style="rhombus;fillColor=#e8f5e9;strokeColor=#2e7d32;fontSize=9;" vertex="1" parent="70">
+      <mxGeometry x="50" y="250" width="180" height="55" as="geometry"/>
+    </mxCell>
+    <mxCell id="76" value="模型返回 tool_use？
+→ switch 分发执行工具
+→ tool_result 回写 messages
+→ 继续循环" style="rounded=1;fillColor=#fce4ec;strokeColor=#c62828;fontStyle=1;fontSize=10;" vertex="1" parent="70">
+      <mxGeometry x="20" y="260" width="240" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="e71" style="endArrow=classic;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="70" source="71" target="72">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e72" style="endArrow=classic;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="70" source="72" target="73">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e73" style="endArrow=classic;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="70" source="73" target="74">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e74" style="endArrow=classic;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="70" source="74" target="76">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <!-- 循环箭头 -->
+    <mxCell id="e76" style="endArrow=classic;strokeColor=#c62828;strokeWidth=2;exitX=1;exitY=0.5;entryX=1;entryY=0.5;curved=1;" edge="1" parent="70" source="76" target="71">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="265" y="295"/>
+          <mxPoint x="265" y="52"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="76label" value="while(true)" style="text;html=1;fontSize=9;fontStyle=3;align=center;fillColor=none;strokeColor=none;fontColor=#c62828;" vertex="1" parent="70">
+      <mxGeometry x="245" y="155" width="35" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- ========== 右侧：5大核心设计思想 ========== -->
+    <mxCell id="80" value="5大核心设计思想" style="swimlane;startSize=24;fillColor=#e0f2f1;strokeColor=#00695c;fontStyle=1;fontSize=12;rounded=1;arcSize=10;swimlaneLine=0;" vertex="1" parent="1">
+      <mxGeometry x="900" y="435" width="280" height="260" as="geometry"/>
+    </mxCell>
+    <mxCell id="81" value="1. 运行时与能力分离
+AgentRuntime 稳定 / StageConfig 控制能力" style="rounded=1;fillColor=#e0f7fa;strokeColor=#00838f;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="80">
+      <mxGeometry x="10" y="32" width="260" height="38" as="geometry"/>
+    </mxCell>
+    <mxCell id="82" value="2. 工具是Agent的执行器官
+模型只决策，本地Java代码真正执行" style="rounded=1;fillColor=#e0f7fa;strokeColor=#00838f;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="80">
+      <mxGeometry x="10" y="78" width="260" height="38" as="geometry"/>
+    </mxCell>
+    <mxCell id="83" value="3. 消息历史=工作记忆
+所有输入/结果/消息都汇入同一历史" style="rounded=1;fillColor=#e0f7fa;strokeColor=#00838f;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="80">
+      <mxGeometry x="10" y="124" width="260" height="38" as="geometry"/>
+    </mxCell>
+    <mxCell id="84" value="4. 长任务必须外置状态
+Todo→Task→Worktree→Team" style="rounded=1;fillColor=#e0f7fa;strokeColor=#00838f;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="80">
+      <mxGeometry x="10" y="170" width="260" height="38" as="geometry"/>
+    </mxCell>
+    <mxCell id="85" value="5. 多Agent=协议+状态+通信
+文件inbox + JSON任务板 + 简单协议" style="rounded=1;fillColor=#e0f7fa;strokeColor=#00838f;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="80">
+      <mxGeometry x="10" y="216" width="260" height="38" as="geometry"/>
+    </mxCell>
+
+  </root>
+</mxGraphModel>
