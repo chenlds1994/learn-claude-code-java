@@ -1,0 +1,33 @@
+# 知识卡导出索引文件
+schema_version: 1
+locale: zh-CN
+branch: master
+nodes_managed: true
+exported_at: "2026-09-09T01:39:03Z"
+modules:
+    "":
+        dir_name: Learn Claude Code Java 学习仓库根
+        title: Learn Claude Code Java 学习仓库根
+        scope:
+            - learn-flowchart.drawio
+            - learn-claude-code-tutorial.drawio
+            - .gitignore
+            - skills/
+            - pom.xml
+            - Java开源项目1周学习计划.md
+            - LICENSE
+            - README.md
+        source_files: []
+        children:
+            - web_frontend
+        depends_on: []
+        related_to: []
+    web_frontend:
+        dir_name: Claude Code 学习网站前端（Next.js 静态站点）
+        title: Claude Code 学习网站前端（Next.js 静态站点）
+        scope:
+            - web/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []

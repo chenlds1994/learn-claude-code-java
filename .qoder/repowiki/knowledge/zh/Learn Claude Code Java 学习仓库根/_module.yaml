@@ -1,0 +1,15 @@
+schema_version: 1
+module_path: ""
+title: Learn Claude Code Java 学习仓库根
+scope:
+    - learn-flowchart.drawio
+    - learn-claude-code-tutorial.drawio
+    - .gitignore
+    - skills/
+    - pom.xml
+    - Java开源项目1周学习计划.md
+    - LICENSE
+    - README.md
+source_files: []
+depends_on: []
+related_to: []
