@@ -5,6 +5,12 @@ import com.learnclaudecode.common.AnthropicClient;
 import com.learnclaudecode.common.EnvConfig;
 import com.learnclaudecode.common.WorkspacePaths;
 import com.learnclaudecode.context.CompressionService;
+import com.learnclaudecode.goal.GoalController;
+import com.learnclaudecode.hooks.HookManager;
+import com.learnclaudecode.mcp.McpClient;
+import com.learnclaudecode.memory.MemoryStore;
+import com.learnclaudecode.permission.PermissionManager;
+import com.learnclaudecode.scheduler.CronScheduler;
 import com.learnclaudecode.skills.SkillLoader;
 import com.learnclaudecode.tasks.TaskManager;
 import com.learnclaudecode.tasks.WorktreeManager;
@@ -12,6 +18,7 @@ import com.learnclaudecode.team.MessageBus;
 import com.learnclaudecode.team.TeammateManager;
 import com.learnclaudecode.tools.CommandTools;
 import com.learnclaudecode.tools.TodoManager;
+import com.learnclaudecode.workflow.WorkflowEngine;
 
 /**
  * 应用装配器，集中创建共享服务。
@@ -52,10 +59,24 @@ public final class AppContext {
         TeammateManager teammateManager = new TeammateManager(paths, client, commandTools, messageBus, taskManager);
         WorktreeManager worktreeManager = new WorktreeManager(paths, taskManager);
 
+        // s03-s17 引入的扩展 Manager：权限、Hook、持久记忆、定时、MCP、工作流、目标循环。
+        // 这些 Manager 由 AgentRuntime 按阶段开关（StageConfig.enableXxx）选择性调用；
+        // 未开启对应开关的阶段会直接跳过它们的逻辑，因此这里可以无条件装配。
+        PermissionManager permissionManager = new PermissionManager(paths);
+        HookManager hookManager = new HookManager();
+        MemoryStore memoryStore = new MemoryStore(paths);
+        CronScheduler cronScheduler = new CronScheduler(paths);
+        McpClient mcpClient = new McpClient(paths);
+        WorkflowEngine workflowEngine = new WorkflowEngine(paths);
+        GoalController goalController = new GoalController(client);
+
         // AgentRuntime 是最终的统一执行器。
         // 真正的“用户输入 -> 调模型 -> 模型发起工具调用 -> 本地执行工具 -> 再回给模型”
         // 这条主链路，全部都发生在 AgentRuntime 中。
-        this.runtime = new AgentRuntime(client, paths, commandTools, todoManager, skillLoader, compressionService, taskManager, backgroundManager, messageBus, teammateManager, worktreeManager);
+        this.runtime = new AgentRuntime(client, paths, commandTools, todoManager, skillLoader,
+                compressionService, taskManager, backgroundManager, messageBus, teammateManager,
+                worktreeManager, permissionManager, hookManager, memoryStore, cronScheduler,
+                mcpClient, workflowEngine, goalController);
     }
 
     /**

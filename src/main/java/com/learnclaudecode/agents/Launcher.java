@@ -3,7 +3,7 @@ package com.learnclaudecode.agents;
 /**
  * 统一入口启动器。
  *
- * 项目里每个 `S01` 到 `S12` 的 main 类都非常薄，
+ * 项目里每个 `S01` 到 `S17` 的 main 类都非常薄，
  * 它们只负责选择某一个 StageConfig，然后交给这个 Launcher 启动。
  *
  * 这样做的意义是避免每个入口类重复写初始化代码。

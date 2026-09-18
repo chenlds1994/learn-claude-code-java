@@ -146,4 +146,66 @@ public final class WorkspacePaths {
     public Path worktreesDir() {
         return workdir.resolve(".worktrees");
     }
+
+    /**
+     * 返回持久记忆目录路径，不存在时自动创建。
+     * 这里返回 workdir 下的 .memory 目录，例如 /repo/.memory。
+     * 返回的是单个目录的 Path，用于存放跨会话持久化的记忆条目。
+     *
+     * @return .memory 目录路径
+     */
+    public Path memoryDir() {
+        return ensureDir(workdir.resolve(".memory"));
+    }
+
+    /**
+     * 返回定时任务目录路径，不存在时自动创建。
+     * 这里返回 workdir 下的 .crons 目录，例如 /repo/.crons。
+     * 返回的是单个目录的 Path，用于存放 cron 调度定义与触发记录。
+     *
+     * @return .crons 目录路径
+     */
+    public Path cronsDir() {
+        return ensureDir(workdir.resolve(".crons"));
+    }
+
+    /**
+     * 返回运行时状态目录路径，不存在时自动创建。
+     * 这里返回 workdir 下的 .runtime 目录，例如 /repo/.runtime。
+     * 返回的是单个目录的 Path，用于存放工作流运行记录、目标循环状态
+     * 等运行时数据。
+     *
+     * @return .runtime 目录路径
+     */
+    public Path runtimeDir() {
+        return ensureDir(workdir.resolve(".runtime"));
+    }
+
+    /**
+     * 返回 MCP 插件目录路径，不存在时自动创建。
+     * 这里返回 workdir 下的 .mcp 目录，例如 /repo/.mcp。
+     * 返回的是单个目录的 Path，用于存放 MCP server 连接配置
+     * 与导入的外部工具定义。
+     *
+     * @return .mcp 目录路径
+     */
+    public Path mcpDir() {
+        return ensureDir(workdir.resolve(".mcp"));
+    }
+
+    /**
+     * 确保目录存在，不存在时创建（含父目录）。
+     * 创建失败时静默容错，仍返回原路径，由后续读写操作暴露真正的错误。
+     *
+     * @param dir 目标目录路径
+     * @return 目标目录路径
+     */
+    private Path ensureDir(Path dir) {
+        try {
+            Files.createDirectories(dir);
+        } catch (IOException ignored) {
+            // 目录创建失败不在此处中断，保持 getter 的轻量语义。
+        }
+        return dir;
+    }
 }

@@ -36,7 +36,7 @@
   - 工具结果如何重新回注给模型继续推理
 
 - **Claude Code 风格设计**
-  - 为什么要把能力拆成多个阶段 `S01 ~ S12`
+  - 为什么要把能力拆成多个阶段 `S01 ~ S17`
   - 为什么运行时和能力配置要分离
   - 为什么 Todo、Skill、Compression、Task、Team、Worktree 都是“外挂式能力”
 
@@ -103,72 +103,81 @@
   - 理解 LLM API 请求到底怎么发
 
 - **第六步：按阶段继续学习高级能力**
-  - `S03` Todo
-  - `S04` Subagent
-  - `S05` Skills
-  - `S06` Compression
-  - `S07` Task System
-  - `S08` Background Tasks
-  - `S09 ~ S11` Agent Teams
-  - `S12` Worktree Task Isolation
+  - `S03` Permission（权限系统）
+  - `S04` Hooks（钩子系统）
+  - `S05` TodoWrite（任务管理）
+  - `S06` Subagent（子代理）
+  - `S07` Skills（技能加载）
+  - `S08` Compression（上下文压缩）
+  - `S09` Memory（记忆系统）
+  - `S10` Task System（任务系统深化）
+  - `S11` Background Tasks（后台任务）
+  - `S12` Cron Scheduler（定时调度）
+  - `S13` Agent Teams（多 Agent 协作）
+  - `S14` MCP Plugin（MCP 插件）
+  - `S15` Integrated Harness（集成运行时）
+  - `S16` Workflow Runtime（工作流运行时）
+  - `S17` Goal Loop（目标循环）
 
 - **第七步：最后看 `SFull`**
   - 观察所有能力组合后的完整运行形态
 
 ## 阶段目录说明
 
-项目使用 `S01 ~ S12` 的渐进式结构，每个阶段只引入一个或少量新概念。
+项目使用 `S01 ~ S17` 的渐进式结构，每个阶段只引入一个或少量新概念。
 
-- **`S01AgentLoop`**
-  - 最小 Agent 闭环
+- **`S01AgentLoop`** — 最小 Agent 闭环
   - 重点理解：模型不是一次性完成任务，而是分步行动
 
-- **`S02ToolUse`**
-  - 引入文件工具
+- **`S02ToolUse`** — 引入文件工具
   - 重点理解：coding agent 为什么必须会读写代码
 
-- **`S03TodoList`**
-  - 引入 Todo 工具
+- **`S03Permission`** — 引入权限系统
+  - 重点理解：工具调用为什么需要三态控制（allow/deny/confirm）
+
+- **`S04Hooks`** — 引入钩子系统
+  - 重点理解：如何在主循环关键点注入扩展逻辑而不重写循环
+
+- **`S05TodoWrite`** — 引入 Todo 工具
   - 重点理解：长任务为什么需要显式计划和状态跟踪
 
-- **`S04Subagent`**
-  - 引入子代理
-  - 重点理解：为什么复杂问题要分治，为什么需要“新上下文”
+- **`S06Subagent`** — 引入子代理
+  - 重点理解：为什么复杂问题要分治，为什么需要"新上下文"
 
-- **`S05Skills`**
-  - 引入技能加载
-  - 重点理解：模型之外的“可装载知识”怎么接入 Agent
+- **`S07SkillLoading`** — 引入技能加载
+  - 重点理解：模型之外的"可装载知识"怎么接入 Agent
 
-- **`S06ContextCompression`**
-  - 引入上下文压缩
+- **`S08ContextCompact`** — 引入上下文压缩
   - 重点理解：上下文窗口不够时如何保留连续性
 
-- **`S07TaskSystem`**
-  - 引入文件任务板
-  - 重点理解：任务规划如何变成可持久化状态
+- **`S09MemorySystem`** — 引入记忆系统
+  - 重点理解：如何让 Agent 跨会话记住重要信息
 
-- **`S08BackgroundTasks`**
-  - 引入后台任务
+- **`S10TaskSystem`** — 引入文件任务板
+  - 重点理解：任务规划如何变成可持久化、可认领的工程状态
+
+- **`S11BackgroundTasks`** — 引入后台任务
   - 重点理解：长时间命令如何异步执行，不阻塞主对话
 
-- **`S09AgentTeams`**
-  - 引入多个 Agent 协作
-  - 重点理解：lead 和 teammate 如何通过 inbox 通信
+- **`S12CronScheduler`** — 引入定时调度
+  - 重点理解：Agent 如何在无人干预时按计划自动行动
 
-- **`S10ShutdownAndPlanApproval`**
-  - 引入协议化管理
-  - 重点理解：多 Agent 系统为什么需要 shutdown / approval 协议
+- **`S13AgentTeams`** — 引入多 Agent 协作
+  - 重点理解：Lead + Teammates 的完整运行时（消息总线、原子认领、Worktree 隔离、治理协议）
 
-- **`S11AutonomousAgentTeams`**
-  - 引入自治 teammate
-  - 重点理解：Agent 如何在空闲时自动认领任务
+- **`S14McpPlugin`** — 引入 MCP 插件
+  - 重点理解：如何在运行时动态发现和调用外部工具
 
-- **`S12WorktreeTaskIsolation`**
-  - 引入 worktree lane
-  - 重点理解：多任务并行时如何做目录级隔离
+- **`S15IntegratedHarness`** — 集成运行时
+  - 重点理解：14 种能力如何在一个循环中协同工作
 
-- **`SFull`**
-  - 完整版
+- **`S16WorkflowRuntime`** — 引入工作流运行时
+  - 重点理解：固定编排如何写进代码实现确定性执行与 Resume
+
+- **`S17GoalLoop`** — 引入目标循环
+  - 重点理解：独立评判者如何决定循环何时可以停止
+
+- **`SFull`** — 完整版
   - 重点理解：所有能力叠加后的总效果
 
 ## 目录结构说明
@@ -186,7 +195,14 @@ learn-claude-code-java/
 │  ├─ tasks/
 │  ├─ team/
 │  ├─ background/
-│  └─ skills/
+│  ├─ skills/
+│  ├─ permission/
+│  ├─ hooks/
+│  ├─ memory/
+│  ├─ scheduler/
+│  ├─ mcp/
+│  ├─ workflow/
+│  └─ goal/
 ├─ web/
 ├─ skills/
 ├─ .env.example
@@ -198,7 +214,7 @@ learn-claude-code-java/
 
 这是最核心的目录，负责“Agent 如何跑”。
 
-- **`S01...S12` / `SFull`**
+- **`S01...S17` / `SFull`**
   - 各阶段入口类
   - 每个类都很薄，只负责选一个 `StageConfig`
 
@@ -359,9 +375,9 @@ mvn exec:java -Dexec.mainClass=com.learnclaudecode.agents.SFull
 把主类替换成对应阶段即可，例如：
 
 ```bash
-mvn exec:java -Dexec.mainClass=com.learnclaudecode.agents.S04Subagent
-mvn exec:java -Dexec.mainClass=com.learnclaudecode.agents.S07TaskSystem
-mvn exec:java -Dexec.mainClass=com.learnclaudecode.agents.S11AutonomousAgentTeams
+mvn exec:java -Dexec.mainClass=com.learnclaudecode.agents.S06Subagent
+mvn exec:java -Dexec.mainClass=com.learnclaudecode.agents.S10TaskSystem
+mvn exec:java -Dexec.mainClass=com.learnclaudecode.agents.S13AgentTeams
 ```
 
 ### 运行前端项目
@@ -390,11 +406,17 @@ npm run dev
 6. `AgentRuntime`
 7. `AnthropicClient`
 8. `CommandTools`
-9. `CompressionService`
-10. `TaskManager`
-11. `TeammateManager`
-12. `WorktreeManager`
-13. `SFull`
+9. `PermissionManager`
+10. `HookManager`
+11. `CompressionService`
+12. `MemoryStore`
+13. `TaskManager`
+14. `CronScheduler`
+15. `TeammateManager`
+16. `McpClient`
+17. `WorkflowEngine`
+18. `GoalController`
+19. `SFull`
 
 这样读的好处是：
 
