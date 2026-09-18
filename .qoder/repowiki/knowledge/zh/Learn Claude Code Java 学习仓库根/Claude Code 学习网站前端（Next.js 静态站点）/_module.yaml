@@ -1,8 +1,0 @@
-schema_version: 1
-module_path: web_frontend
-title: Claude Code 学习网站前端（Next.js 静态站点）
-scope:
-    - web/
-source_files: []
-depends_on: []
-related_to: []

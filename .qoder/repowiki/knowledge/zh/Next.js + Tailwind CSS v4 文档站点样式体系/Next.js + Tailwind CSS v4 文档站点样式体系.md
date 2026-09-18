@@ -1,17 +1,10 @@
 ---
 kind: frontend_style
 name: Next.js + Tailwind CSS v4 文档站点样式体系
+slug: frontend_style
 category: frontend_style
 scope:
     - '**'
-source_files:
-    - web/src/app/globals.css
-    - web/postcss.config.mjs
-    - web/package.json
-    - web/src/hooks/useDarkMode.ts
-    - web/src/components/layout/header.tsx
-    - web/src/components/ui/card.tsx
-    - web/src/lib/utils.ts
 ---
 
 ## 1. 使用的系统与工具

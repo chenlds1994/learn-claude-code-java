@@ -1,14 +1,10 @@
 ---
 kind: dependency_management
 name: 多语言项目依赖管理：Maven + Next.js（npm）双栈管理
+slug: dependency_management
 category: dependency_management
 scope:
     - '**'
-source_files:
-    - pom.xml
-    - web/package.json
-    - web/package-lock.json
-    - web/.gitignore
 ---
 
 ## 1. 使用的系统/方法

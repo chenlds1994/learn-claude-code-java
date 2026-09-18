@@ -1,32 +1,27 @@
 # 知识卡导出索引文件
 schema_version: 1
 locale: zh-CN
-branch: master
+branch: main-s17
 nodes_managed: true
-exported_at: "2026-09-17T13:49:12Z"
+exported_at: "2026-09-18T03:29:26Z"
 modules:
     "":
-        dir_name: Learn Claude Code Java 学习仓库根
-        title: Learn Claude Code Java 学习仓库根
+        dir_name: Learn Claude Code Java 教学工程（渐进式 Agent 运行时 + Next.js 可视化）
+        title: Learn Claude Code Java 教学工程（渐进式 Agent 运行时 + Next.js 可视化）
+        scope: []
+        source_files: []
+        children:
+            - 22c53272-2c0b-43fe-9aca-fe7832c9e50c
+        depends_on: []
+        related_to: []
+    22c53272-2c0b-43fe-9aca-fe7832c9e50c:
+        dir_name: Claude Code 教学项目根模块（Maven 工程与 Skills）
+        title: Claude Code 教学项目根模块（Maven 工程与 Skills）
         scope:
-            - learn-flowchart.drawio
             - learn-claude-code-tutorial.drawio
             - .gitignore
             - skills/
             - pom.xml
-            - Java开源项目1周学习计划.md
-            - LICENSE
-            - README.md
-        source_files: []
-        children:
-            - web_frontend
-        depends_on: []
-        related_to: []
-    web_frontend:
-        dir_name: Claude Code 学习网站前端（Next.js 静态站点）
-        title: Claude Code 学习网站前端（Next.js 静态站点）
-        scope:
-            - web/
         source_files: []
         children: []
         depends_on: []

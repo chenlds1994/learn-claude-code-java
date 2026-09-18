@@ -1,15 +1,10 @@
 ---
 kind: build_system
 name: Maven + Next.js 双工程构建与静态站点发布
+slug: build_system
 category: build_system
 scope:
     - '**'
-source_files:
-    - pom.xml
-    - web/package.json
-    - web/next.config.ts
-    - web/vercel.json
-    - .env
 ---
 
 ## 1. 使用的构建系统
@@ -32,7 +27,7 @@ source_files:
 
 ### 3.1 Java 工程
 - 单模块 Maven 工程，源码位于 `src/main/java/com.learnclaudecode`。
-- 每个学习阶段对应一个独立入口类（`S01AgentLoop` ~ `S12WorktreeTaskIsolation`、`SFull`），通过 `mvn exec:java -Dexec.mainClass=...` 单独运行，便于分步演示。
+- 每个学习阶段对应一个独立入口类（`S01AgentLoop` ~ `S17GoalLoop`、`SFull`，共 18 个入口），通过 `mvn exec:java -Dexec.mainClass=...` 单独运行，便于分步演示。
 - 统一通过 `exec-maven-plugin` 强制 JVM 输出/输入编码为 UTF-8（`sun.stdout.encoding`、`sun.stderr.encoding`、`file.encoding`）。
 - 版本号硬编码在 `pom.xml` 的 `<version>` 标签中（当前 `1.0.0`），无语义化版本管理或发布插件。
 
@@ -51,4 +46,4 @@ source_files:
 - **环境变量注入**：Java 端通过 `dotenv-java` 从根目录 `.env` 加载配置（如 Anthropic API Key），构建期不嵌入任何敏感信息。
 - **无 CI/CD**：仓库未包含 GitHub Actions、GitLab CI 或其他自动化流水线；构建与发布需手动执行 `mvn compile/exec` 与 `npm run build`。
 - **无容器化**：未发现 Dockerfile 或 docker-compose 配置，无法通过容器一键构建。
-- **无单元测试框架**：`pom.xml` 中未引入 JUnit/TestNG 等测试依赖，也未发现 `src/test` 目录，说明该项目侧重演示而非质量保障流程。
+- **单元测试框架已引入**：`pom.xml` 已引入 JUnit Jupiter 5.10.2 与 `maven-surefire-plugin` 3.1.2，`src/test/java/com/learnclaudecode/` 下有 12 个测试包共 120 个测试用例，通过 `mvn test` 执行，覆盖核心服务与工具逻辑。

@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: 22c53272-2c0b-43fe-9aca-fe7832c9e50c
+title: Claude Code 教学项目根模块（Maven 工程与 Skills）
+scope:
+    - learn-claude-code-tutorial.drawio
+    - .gitignore
+    - skills/
+    - pom.xml
+source_files: []
+depends_on: []
+related_to: []
